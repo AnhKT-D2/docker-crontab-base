@@ -7,6 +7,7 @@ abstract class RepositoryAbstract implements RepositoryInterface
     /**
      * @var $model
      */
+    private $app;
     protected $model;
 
     public function __construct()
@@ -70,11 +71,6 @@ abstract class RepositoryAbstract implements RepositoryInterface
 
     public function makeModel()
     {
-        $model = $this->app->make($this->model());
-
-        if (!$model instanceof Model)
-            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
-
-        return $this->model = $model->newQuery();
+        $this->model = app()->make($this->model());
     }
 }
