@@ -7,7 +7,7 @@ class AuthService implements AuthServiceInterface
     private $guard;
     public function __construct()
     {
-        $this->guard = auth()->guard('admin');
+        $this->guard = auth()->guard('api');
     }
 
     public function signIn($data)

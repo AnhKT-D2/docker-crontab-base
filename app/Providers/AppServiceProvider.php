@@ -13,26 +13,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $models = [
-            'Auth'
-        ];
+        $this->app->singleton(
+            "App\Repositories\User\UserRepositoryInterface",
+            "App\Repositories\User\UserRepository"
+        );
 
-        foreach ($models as $model) {
-            $this->app->singleton(
-                "App\Repositories\{$model}\{$model}RepositoryInterface",
-                "App\Repositories\{$model}\{$model}Repository"
-            );
+        $this->app->singleton(
+            "App\Repositories\Auth\AuthRepositoryInterface",
+            "App\Repositories\Auth\AuthRepository"
+        );
 
-            $this->app->singleton(
-                "App\Services\Auth\AuthServiceInterface",
-                "App\Services\Auth\AuthService"
-            );
-            $this->app->singleton(
-                "App\Services\Mail\MailServiceInterface",
-                "App\Services\Mail\MailService"
-            );
-        }
-
+        $this->app->singleton(
+            "App\Services\Auth\AuthServiceInterface",
+            "App\Services\Auth\AuthService"
+        );
+        $this->app->singleton(
+            "App\Services\Mail\MailServiceInterface",
+            "App\Services\Mail\MailService"
+        );
     }
 
     /**

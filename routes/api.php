@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
 /*
@@ -20,5 +20,8 @@ Route::get('/send-mail', [AuthController::class, 'sendMail'])->name('sendMail');
 Route::get('/send-multi-mail', [AuthController::class, 'sendMultiMail'])->name('sendMultiMail');
 Route::middleware('auth:api')->group(function () {
     Route::get('account', [AuthController::class, 'account'])->name('account');
+    Route::prefix("users")->group(function() {
+        Route::get("/", [UserController::class, 'index']);
+    });
 });
 
