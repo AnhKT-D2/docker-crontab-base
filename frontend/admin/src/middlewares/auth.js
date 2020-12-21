@@ -9,7 +9,7 @@ export default function auth({ to, next }) {
     if (!token && !tokenStore) {
       next({ name: "SignIn" });
     } else if (token && tokenStore) {
-      console.log("Da dang nhap thanh cong");
+      store.dispatch("auth/getAccount");
     }
     next();
   } else {

@@ -21,7 +21,6 @@
 import TheSidebar from "./TheSidebar";
 import TheHeader from "./TheHeader";
 import TheFooter from "./TheFooter";
-import firebase from "@/plugins/firebase";
 
 export default {
   name: "TheContainer",
@@ -29,39 +28,6 @@ export default {
     TheSidebar,
     TheHeader,
     TheFooter
-  },
-  data() {
-    return {};
-  },
-  created() {
-    this.getTokenFirebase();
-  },
-  methods: {
-    getTokenFirebase() {
-      const messaging = firebase.messaging();
-      messaging
-        .requestPermission()
-        .then(function() {
-          return messaging.getToken();
-        })
-        .then(function(token) {
-          console.log(token);
-        })
-        .catch(function(err) {
-          console.log("Unable to get permission to notify.", err);
-        });
-
-      let enableForegroundNotification = true;
-      messaging.onMessage(function(payload) {
-        console.log("Message received. ", payload);
-        if (enableForegroundNotification) {
-          const { title, ...options } = JSON.parse(payload.data.notification);
-          navigator.serviceWorker.getRegistrations().then(registration => {
-            registration[0].showNotification(title, options);
-          });
-        }
-      });
-    }
   }
 };
 </script>

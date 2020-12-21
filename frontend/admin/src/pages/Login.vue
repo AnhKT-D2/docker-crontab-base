@@ -12,14 +12,12 @@
                     <p class="text-muted">Sign In to your account</p>
                     <ValidationProvider
                       v-slot="{ errors }"
-                      vid="email"
-                      name="Username"
+                      :name="$t('login.user_name')"
                       rules="required|email|min:10|max:100"
-                      mode="passive"
                     >
                       <CInput
                         placeholder="Username"
-                        autocomplete="username email"
+                        autocomplete="off"
                         v-model.trim="formSignIn.email"
                         :class="[errors[0] ? 'is-invalid' : '']"
                       >
@@ -34,15 +32,14 @@
                     <ValidationProvider
                       v-slot="{ errors }"
                       vid="password"
-                      name="Password"
+                      :name="$t('login.password')"
                       rules="required|min:6|max:50"
-                      mode="passive"
                     >
                       <CInput
                         placeholder="Password"
                         type="password"
                         v-model.trim="formSignIn.password"
-                        autocomplete="curent-password"
+                        autocomplete="off"
                         :class="[errors[0] ? 'is-invalid' : '']"
                       >
                         <template #prepend-content

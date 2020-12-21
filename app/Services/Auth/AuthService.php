@@ -43,4 +43,9 @@ class AuthService implements AuthServiceInterface
             'expires_in' => $this->guard->factory()->getTTL() * 60
         ];
     }
+
+    public function account()
+    {
+        return $this->guard->user();
+    }
 }
