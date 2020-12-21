@@ -7,3 +7,10 @@ export const signIn = data => {
     data
   });
 };
+
+export const account = () => {
+  return request({
+    url: "/account",
+    method: "get"
+  });
+};

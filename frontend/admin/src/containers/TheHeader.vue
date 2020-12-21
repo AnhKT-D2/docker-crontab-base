@@ -32,6 +32,11 @@
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="d-md-down-none mx-2">
+        <div class="language">
+          <BoxLanguage />
+        </div>
+      </CHeaderNavItem>
+      <CHeaderNavItem class="d-md-down-none mx-2">
         <div class="notification-icon" @click.prevent="showBoxNotification">
           <CIcon name="cil-bell" />
         </div>
@@ -65,10 +70,12 @@
 import TheHeaderDropdownAccnt from "./TheHeaderDropdownAccnt";
 import { mapActions } from "vuex";
 import BoxNotification from "@/components/BoxNotification";
+import BoxLanguage from "../components/BoxLanguage";
 
 export default {
   name: "TheHeader",
   components: {
+    BoxLanguage,
     BoxNotification,
     TheHeaderDropdownAccnt
   },

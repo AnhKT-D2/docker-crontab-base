@@ -1,3 +1,17 @@
 {
-    "aa": "cmm"
+    "locales": {
+        "vi": "Vietnamese",
+        "en": "English",
+        "ja": "Japanese"
+    },
+    "login": {
+        "user_name": "Tài khoản",
+        "password": "Mật khẩu"
+    },
+    "error": {
+        "default": "Đã xảy ra lỗi hệ thống",
+        "validation": {
+
+        }
+    }
 }
