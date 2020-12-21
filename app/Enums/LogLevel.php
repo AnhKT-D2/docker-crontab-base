@@ -6,13 +6,13 @@ namespace App\Enums;
 
 class LogLevel extends BaseEnum
 {
-  const DEBUG = 1;
+    const DEBUG = 1;
 
-  const INFO = 2;
+    const INFO = 2;
 
-  const WARNING = 3;
+    const WARNING = 3;
 
-  const ERROR = 4;
+    const ERROR = 4;
 
-  const ALERT = 5;
+    const ALERT = 5;
 }

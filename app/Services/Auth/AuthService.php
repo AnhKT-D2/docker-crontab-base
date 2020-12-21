@@ -7,7 +7,7 @@ class AuthService implements AuthServiceInterface
     private $guard;
     public function __construct()
     {
-        $this->guard = auth()->guard('admin');
+        $this->guard = auth()->guard('api');
     }
 
     public function signIn($data)
@@ -42,5 +42,10 @@ class AuthService implements AuthServiceInterface
             'token_type' => 'bearer',
             'expires_in' => $this->guard->factory()->getTTL() * 60
         ];
+    }
+
+    public function account()
+    {
+        return $this->guard->user();
     }
 }

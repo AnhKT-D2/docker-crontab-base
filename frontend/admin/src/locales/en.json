@@ -1,3 +1,17 @@
 {
+  "locales": {
+    "vi": "Vietnamese",
+    "en": "English",
+    "ja": "Japanese"
+  },
+  "login": {
+    "user_name": "Username",
+    "password": "Password"
+  },
+  "error": {
+    "default": "System error",
+    "validation": {
 
+    }
+  }
 }

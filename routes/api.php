@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +21,12 @@ Route::get('/send-mail', [AuthController::class, 'sendMail'])->name('sendMail');
 Route::get('/send-multi-mail', [AuthController::class, 'sendMultiMail'])->name('sendMultiMail');
 Route::middleware('auth:api')->group(function () {
     Route::get('account', [AuthController::class, 'account'])->name('account');
+    Route::prefix("users")->group(function() {
+        Route::get("/", [UserController::class, 'index']);
+    });
+
+    Route::prefix('notifications')->group(function() {
+        Route::post('save-device-token', [NotificationController::class, 'saveDeviceToken'])->name('saveDeviceToken');
+    });
 });
 

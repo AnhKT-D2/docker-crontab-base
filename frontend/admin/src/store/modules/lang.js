@@ -1,5 +1,4 @@
 import { SET_LOCALE } from "../mutation.types";
-import {} from "@/commons/constant";
 import Cookies from "js-cookie";
 
 export const state = {

@@ -1,13 +1,15 @@
 import Cookies from "js-cookie";
 import * as types from "../mutation.types";
-import { signIn } from "@/api/auth.api";
+import { signIn, account } from "@/api/auth.api";
 
 export const state = {
-  accessToken: null
+  accessToken: Cookies.get("access_token"),
+  account: {}
 };
 
 export const getters = {
-  accessToken: state => state.accessToken
+  accessToken: state => state.accessToken,
+  account: state => state.account
 };
 
 export const mutations = {
@@ -22,6 +24,9 @@ export const mutations = {
       Cookies.remove("access_token");
       state.accessToken = null;
     }
+  },
+  [types.AUTH.ACCOUNT](state, account) {
+    state.account = account;
   }
 };
 
@@ -40,5 +45,17 @@ export const actions = {
   },
   logout({ commit }) {
     commit(types.AUTH.LOGOUT, { status: 200 });
+  },
+  getAccount({ commit }) {
+    return new Promise((resolve, reject) => {
+      account()
+        .then(response => {
+          resolve(response);
+          commit(types.AUTH.ACCOUNT, response.data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 };
