@@ -46,6 +46,15 @@ const routes = [
           requiredAuth: true
         },
         component: view("Dashboard")
+      },
+      {
+        path: "users",
+        name: "Users",
+        meta: {
+          layout: "MainLayout",
+          requiredAuth: true
+        },
+        component: view("users/Users")
       }
     ]
   }

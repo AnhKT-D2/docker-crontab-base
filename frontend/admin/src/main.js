@@ -7,6 +7,7 @@ import CoreUIVue from "@coreui/vue";
 import { iconsSet as icons } from "./assets/icons/icons.js";
 import store from "./store";
 import i18n from "./plugins/i18n";
+import plugins from "./plugins";
 import MainLayout from "./layouts/MainLayout.vue";
 import GuestLayout from "./layouts/GuestLayout.vue";
 import { extend } from "vee-validate";
@@ -25,6 +26,7 @@ Object.keys(rules).forEach(rule => {
 
 Vue.config.performance = true;
 Vue.use(CoreUIVue);
+Vue.use(plugins);
 Vue.prototype.$log = console.log.bind(console);
 
 new Vue({

@@ -1,9 +1,10 @@
 <template>
   <CRow>
-    <CCol col="12" xl="8">
+    <CCol col="12" xl="12">
       <CCard>
         <CCardHeader>
           Users
+          <CButton @click="showToast">aaa</CButton>
         </CCardHeader>
         <CCardBody>
           <CDataTable
@@ -59,6 +60,9 @@ export default {
     }
   },
   methods: {
+    showToast() {
+      this.$toast();
+    },
     getBadge(status) {
       switch (status) {
         case "Active":
