@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Illuminate\Container\Container as App;
+
 abstract class RepositoryAbstract implements RepositoryInterface
 {
     /**
@@ -10,8 +12,9 @@ abstract class RepositoryAbstract implements RepositoryInterface
     private $app;
     protected $model;
 
-    public function __construct()
+    public function __construct(App $app)
     {
+        $this->app = $app;
         $this->makeModel();
     }
 
@@ -71,6 +74,8 @@ abstract class RepositoryAbstract implements RepositoryInterface
 
     public function makeModel()
     {
-        $this->model = app()->make($this->model());
+        $model = $this->app->make($this->model());
+
+        return $this->model = $model->newQuery();
     }
 }

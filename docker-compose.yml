@@ -8,7 +8,6 @@ services:
       - .env
     volumes:
       - ./:/usr/share/nginx/api:cached
-      - ./docker/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mysql
       - redis
@@ -38,7 +37,7 @@ services:
   mysql:
     image: mysql:5.7
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_DATABASE: elearning
       MYSQL_ROOT_PASSWORD: root

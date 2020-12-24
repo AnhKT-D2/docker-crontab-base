@@ -1,9 +1,14 @@
 FROM php:7.4-fpm-alpine
 
+# Set working directory
+WORKDIR /usr/share/nginx/api
+
+# Install Additional dependencies
 RUN apk --no-cache update && \
     apk --no-cache upgrade && \
     apk --no-cache add \
     curl-dev \
+    build-base shadow supervisor \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
@@ -20,11 +25,15 @@ RUN apk --no-cache update && \
     oniguruma-dev
 
 RUN git clone -b 4.2.0 --depth 1 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis
+
+RUN apk add --no-cache zip libzip-dev
+RUN docker-php-ext-configure zip
 RUN docker-php-ext-install \
     pdo_mysql \
     redis \
     opcache \
     gd \
+    zip \
   && docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg
@@ -37,4 +46,23 @@ RUN rm -rf /var/cache/apk/*
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
-WORKDIR /usr/share/nginx/api
+COPY supervisord.conf /etc/supervisord.conf
+COPY supervisor.d /etc/supervisor.d
+
+# Use the default production configuration for PHP-FPM ($PHP_INI_DIR variable already set by the default image)
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Add UID '1000' to www-data
+RUN usermod -u 1000 www-data
+
+# Copy existing application directory
+COPY . .
+
+# Chang app directory permission
+RUN chown -R www-data:www-data .
+
+ENV ENABLE_CRONTAB 1
+
+ENTRYPOINT ["sh", "/usr/share/nginx/api/docker/docker-entrypoint.sh"]
+
+CMD supervisord -n -c /etc/supervisord.conf

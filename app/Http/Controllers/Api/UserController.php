@@ -2,53 +2,80 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Enums\ErrorType;
+use App\Exports\UserExport;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Components\Google_Client;
+use Maatwebsite\Excel\Excel;
 
 class UserController extends ApiController
 {
-    private $userRepository;
+    private $userRepository, $client;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, Google_Client $client)
     {
         $this->userRepository = $userRepository;
+        $this->client = $client->getClient();
     }
 
-    public function index()
+    public function lists(Request $request)
     {
-        $result = $this->userRepository->getAll();
+        $users = $this->userRepository->lists($request);
 
-        return $this->sendSuccess($result);
-    }
+        if (!$users['success']) {
+            return $this->sendError(ErrorType::STATUS_500, ErrorType::STATUS_500);
+        }
 
-    public function create()
-    {
-        //
+        return $this->sendSuccess($users['users']);
     }
 
     public function store(Request $request)
     {
-        //
-    }
+        $user = $this->userRepository->store($request, $this->client);
 
-    public function show($id)
-    {
-        //
-    }
+        if (!$user['success']) {
+            return $this->sendError(ErrorType::STATUS_500, ErrorType::STATUS_500);
+        }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        return $this->sendSuccess();
     }
 
     public function destroy($id)
     {
-        //
+        $user = $this->userRepository->deleteUser($id, $this->client);
+
+        if (!$user['success']) {
+            return $this->sendError(ErrorType::STATUS_500, ErrorType::STATUS_500);
+        }
+
+        return $this->sendSuccess();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = $this->userRepository->updateUser($request, $id);
+
+        if (!$user['success']) {
+            return $this->sendError(ErrorType::STATUS_500, ErrorType::STATUS_500);
+        }
+
+        return $this->sendSuccess();
+    }
+
+    public function show($id)
+    {
+        $user = $this->userRepository->show($id);
+
+        if (!$user['success']) {
+            return $this->sendError(ErrorType::STATUS_500, ErrorType::STATUS_500);
+        }
+
+        return $this->sendSuccess($user['data']);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new UserExport(), "asd.csv");
     }
 }

@@ -13,6 +13,9 @@ import GuestLayout from "./layouts/GuestLayout.vue";
 import { extend } from "vee-validate";
 import * as rules from "vee-validate/dist/rules";
 import { loadVeeValidate } from "@/plugins/vee-validate";
+import firebase from "firebase";
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
 
 Vue.component("MainLayout", MainLayout);
 Vue.component("GuestLayout", GuestLayout);
@@ -24,10 +27,12 @@ Object.keys(rules).forEach(rule => {
   });
 });
 
+Vue.use(VueToast);
 Vue.config.performance = true;
 Vue.use(CoreUIVue);
 Vue.use(plugins);
 Vue.prototype.$log = console.log.bind(console);
+Vue.use(firebase);
 
 new Vue({
   el: "#app",

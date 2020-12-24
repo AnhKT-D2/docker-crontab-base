@@ -14,3 +14,10 @@ export const account = () => {
     method: "get"
   });
 };
+
+export const redirectGoogle = () => {
+  return request({
+    url: "/auth/google/url",
+    method: "get"
+  });
+};

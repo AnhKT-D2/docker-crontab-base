@@ -57,11 +57,18 @@
                         >
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton color="link" class="px-0"
-                          >Forgot password?</CButton
+                        <router-link
+                          to="reset-password"
+                          color="link"
+                          class="px-0"
                         >
+                          Forgot password?
+                        </router-link>
                         <CButton color="link" class="d-lg-none"
                           >Register now!</CButton
+                        >
+                        <CButton class="btn btn-primary" @click="redirectGoogle"
+                          >Login with google</CButton
                         >
                       </CCol>
                     </CRow>
@@ -118,6 +125,11 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch(() => {});
+    },
+    async redirectGoogle() {
+      await this.$store.dispatch("auth/redirectGoogle").then(response => {
+        window.open(response.data.url);
+      });
     }
   }
 };

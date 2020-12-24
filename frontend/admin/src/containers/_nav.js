@@ -11,6 +11,12 @@ export default [
           color: "primary",
           text: "NEW"
         }
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "Users",
+        to: "/users",
+        icon: "cil-user"
       }
     ]
   }

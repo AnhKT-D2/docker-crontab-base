@@ -40,12 +40,17 @@ service.interceptors.response.use(
   error => {
     if (error.response.status === 401) {
       Cookie.remove("access_token");
-      router.push({ name: "SignIn" });
+      // router.push({ name: "SignIn" });
       return Promise.reject(error);
     }
 
     if (error.response.status === 403 || error.response.status === 404) {
       router.push({ name: error.response.status.toString() });
+      return Promise.reject(error);
+    }
+
+    if (error.response.status >= 400) {
+      Cookie.remove("access_token");
       return Promise.reject(error);
     }
 
@@ -68,7 +73,7 @@ service.interceptors.response.use(
       }
     }
 
-    alert("Lỗi: " + msg);
+    // alert("Lỗi: " + msg);
   }
 );
 

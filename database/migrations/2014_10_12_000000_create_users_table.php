@@ -17,8 +17,13 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->tinyInteger('level')->default(2)->comment("super admin: 0, manager: 1, member: 2");
+            $table->tinyInteger('is_active')->default(1)->comment('active: 1, inactive: 0');
             $table->rememberToken();
             $table->timestamps();
         });

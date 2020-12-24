@@ -9,3 +9,8 @@ export const AUTH = {
 export const NOTIFICATION = {
   SAVE_DEVICE_TOKEN: "SAVE_DEVICE_TOKEN"
 };
+
+export const USERS = {
+  FETCH_USERS: "USERS",
+  FETCH_USER: "USER"
+};

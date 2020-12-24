@@ -15,6 +15,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        \App\Models\User::factory()->count(100)->create();
+        \App\Models\User::factory()->count(20)->create();
     }
 }

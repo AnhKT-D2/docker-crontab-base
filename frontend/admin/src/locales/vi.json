@@ -1,17 +1,66 @@
 {
-    "locales": {
-        "vi": "Vietnamese",
-        "en": "English",
-        "ja": "Japanese"
+  "locales": {
+    "vi": "Vietnamese",
+    "en": "English",
+    "ja": "Japanese"
+  },
+  "login": {
+    "user_name": "Tài khoản",
+    "password": "Mật khẩu"
+  },
+  "error": {
+    "default": "Đã xảy ra lỗi hệ thống",
+    "5000": "Đã xảy ra lỗi",
+    "4015": "Token đã hết hạn",
+    "mail_exists": "Email của bạn không tồn tại",
+    "validation": {
+    }
+  },
+  "success": {
+    "password_change": "Mật khẩu đã thay đổi",
+    "send_mail": "Gửi mail thành công, hãy kiểm tra email",
+    "users": {
+      "create_ok": "Thêm mới thành công"
+    }
+  },
+  "common": {
+    "active": "Đang hoạt động",
+    "inactive": "Đang ẩn",
+    "supper_admin": "Admin tối cao",
+    "manager": "Quản lý",
+    "member": "Người dùng",
+    "index": "STT",
+    "label": {
+      "search": "Tìm kiếm"
+    }
+  },
+  "users": {
+    "label": {
+      "name": "Tên người dùng",
+      "phone": "Số điện thoại",
+      "role": "Quyền",
+      "status": "Trạng thái",
+      "avatar": "Ảnh",
+      "password": "Mật khẩu",
+      "confirm_password": "Nhập lại mật khẩu",
+      "pick_avatar": "Chọn ảnh",
+      "key_search": "Nhập tên, email, id",
+      "custom_paginate": "Chọn số lượng bản ghi",
+      "role_placeholder": "---Chọn quyền---",
+      "create_user": "Thêm người dùng",
+      "update_user": "Cập nhật người dùng"
     },
-    "login": {
-        "user_name": "Tài khoản",
-        "password": "Mật khẩu"
+    "button": {
+      "create": "Thêm mới",
+      "delete": "Xóa",
+      "edit": "Cập nhật",
+      "search": "Tìm kiếm",
+      "detail": "Chi tiết",
+      "update": "Cập nhật"
     },
     "error": {
-        "default": "Đã xảy ra lỗi hệ thống",
-        "validation": {
-
-        }
+      "has_role": "Hãy chọn quyền",
+      "has_avatar": "Hãy chọn ảnh"
     }
+  }
 }

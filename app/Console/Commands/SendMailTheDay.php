@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\test;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 use Log;
 
 class SendMailTheDay extends Command
@@ -38,6 +40,6 @@ class SendMailTheDay extends Command
      */
     public function handle()
     {
-        Log::info("aaa");
+        Mail::to('anhkt@fabbi.io')->send(new test());
     }
 }

@@ -37,4 +37,9 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function report(Throwable $e)
+    {
+        dd($e->getMessage());
+    }
 }

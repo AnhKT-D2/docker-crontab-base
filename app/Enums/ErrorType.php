@@ -37,6 +37,10 @@ class ErrorType extends BaseEnum
     const CODE_4013 = '4013';
     const STATUS_4013 = 401;
 
+    // Token is already used
+    const CODE_4015= '4015';
+    const STATUS_4015 = 500;
+
     // Not authorized
     const CODE_4030 = '4030';
     const STATUS_4030 = 403;

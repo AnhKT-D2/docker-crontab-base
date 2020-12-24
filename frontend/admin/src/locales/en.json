@@ -10,8 +10,57 @@
   },
   "error": {
     "default": "System error",
+    "5000": "Something was wrong",
+    "4015": "Token has expirated",
+    "mail_exists": "Your email not exists",
     "validation": {
-
+    }
+  },
+  "success": {
+    "password_change": "Pasword has changed",
+    "send_mail": "Send mail success check your email",
+    "users": {
+      "create_ok": "Create user success"
+    }
+  },
+  "common": {
+    "active": "active",
+    "inactive": "inactive",
+    "supper_admin": "Supper admin",
+    "manager": "Manager",
+    "member": "Member",
+    "index": "index",
+    "label": {
+      "search": "Search"
+    }
+  },
+  "users": {
+    "label": {
+      "name": "Username",
+      "phone": "Phone",
+      "role": "Role",
+      "status": "Status",
+      "avatar": "Avatar",
+      "password": "Password",
+      "confirm_password": "Confirm password",
+      "pick_avatar": "Pick avatar",
+      "key_search": "Enter name, email, id",
+      "custom_paginate": "Choose the number of records",
+      "role_placeholder": "---Choose role---",
+      "create_user": "Create user",
+      "update_user": "Update user"
+    },
+    "button": {
+      "create": "Create",
+      "delete": "Delete",
+      "edit": "Edit",
+      "search": "Search",
+      "detail": "Detail",
+      "update": "Update"
+    },
+    "error": {
+      "has_role": "Please choose role",
+      "has_avatar": "Please choose avatar"
     }
   }
 }

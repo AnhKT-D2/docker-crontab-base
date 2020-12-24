@@ -25,9 +25,12 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => strtolower($this->faker->unique()->lastName) ."@gmail.com",
+            'phone' => $this->faker->phoneNumber,
             'email_verified_at' => now(),
-            'password' => bcrypt(123456), // password
+            'password' => bcrypt(123456),
             'remember_token' => Str::random(10),
+            'level' => 2,
+            'is_active' => 1
         ];
     }
 }
